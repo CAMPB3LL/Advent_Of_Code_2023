@@ -8,22 +8,17 @@ fs.readFile(input, 'utf8', (err, data) => { //fs.readFile(path[, options], callb
     }
 
     let array = data.split("\n"); //Turn each line into an array item
-    let reg = "/[/$&+,:;=?@#|'<>^*()%!-]/g"
 
-    array.forEach((lineInArray) => { //Loop for each array item
+    array.forEach((lineInArray, y) => { //Loop for each array item
+        if(lineInArray.match(/[/$&+,:;=?@#|'<>^*()%!-]/g)){
 
-        position = lineInArray.search(reg) //Position of special character
+            let charInArray = lineInArray.split("");
 
-        while(lineInArray.match(reg)){
-            console.log(lineInArray.search(reg))
+            charInArray.forEach((charInArray, x) => {
+                position = charInArray.match(/[/$&+,:;=?@#|'<>^*()%!-]/g) //Position of special character
+                console.log(position, x, y)
+            })
         }
     });
 
 })
-
-// function search(string, regexp, from = 0) {
-//     const index = string.slice(from).search(regexp);
-//     return index === -1
-//         ? -1
-//         : index + from;
-// }
